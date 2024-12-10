@@ -41,49 +41,50 @@ pip install pygame numpy scipy pydub simpleaudio
   python main.py
 
 ### Cách Chơi
-Bắt đầu
+- Bắt đầu
 Khởi động trò chơi, chọn "Start" từ menu chính.
-Cài đặt nhạc cụ
+- Cài đặt nhạc cụ
 Trong mục "Settings", chọn nhạc cụ mà bạn muốn sử dụng: Piano, Trống hoặc Guitar.
-Chơi
+- Chơi
 Sử dụng các phím mũi tên Trái và Phải để tương tác với các nốt nhạc rơi xuống.
 Nhấn đúng phím để ghi điểm.
-Kết thúc
+- Kết thúc
 Kết quả sẽ được hiển thị ở cuối trò chơi. Hãy xem bạn đã ghi được bao nhiêu điểm!
 
 
 ### Thư Mục Chính
-Audio/: Chứa các file âm thanh của các nốt nhạc đã được tạo tự động.
-Image/: Lưu trữ các tài nguyên hình ảnh như nút bấm, biểu tượng, hình nền.
-Data/: Các file văn bản chứa thông tin về chuỗi nốt nhạc.
-main.py: Mã nguồn chính của trò chơi.
-Thư Viện Sử Dụng
-Pygame: Thư viện cho phát triển game.
-NumPy: Hỗ trợ tính toán số học và xử lý dữ liệu.
-SciPy: Cung cấp các thuật toán và kỹ thuật xử lý tín hiệu.
-Pydub: Quản lý file âm thanh dễ dàng.
-Simpleaudio: Phát âm thanh đơn giản từ file WAV.
+- Audio/: Chứa các file âm thanh của các nốt nhạc đã được tạo tự động.
+- Image/: Lưu trữ các tài nguyên hình ảnh như nút bấm, biểu tượng, hình nền.
+- Data/: Các file văn bản chứa thông tin về chuỗi nốt nhạc.
+- main.py: Mã nguồn chính của trò chơi.
+
+### Thư Viện Sử Dụng
+- Pygame: Thư viện cho phát triển game.
+- NumPy: Hỗ trợ tính toán số học và xử lý dữ liệu.
+- SciPy: Cung cấp các thuật toán và kỹ thuật xử lý tín hiệu.
+- Pydub: Quản lý file âm thanh dễ dàng.
+- Simpleaudio: Phát âm thanh đơn giản từ file WAV.
 
 
 ### Các Hàm Chính
-Hàm lowpass_filter(data, cutoff, fs, order=5): Tạo bộ lọc thông thấp để làm mượt âm thanh.
-Hàm karplus_strong(freq, duration, sampling_rate, decay_factor=0.995):
-Tạo âm thanh guitar dựa trên thuật toán Karplus-Strong.
-Sử dụng ngẫu nhiên để tạo âm thanh ban đầu và áp dụng bộ lọc thông thấp.
-Hàm generate_drum_sound(note_freq, duration, sampling_rate):
-Tạo âm thanh trống bằng cách kết hợp sóng sin và noise.
-Hàm generate_piano_sound(freq, duration, sampling_rate):
-Tạo âm thanh piano bằng cách sử dụng sóng sin.
-Hàm adsr_envelope(wave, instrument, sampling_rate):
-Tạo bao ADSR (Attack, Decay, Sustain, Release) cho các nhạc cụ.
-Dữ Liệu Tần Số
-Frequencies: Định nghĩa tần số cho các nốt nhạc từ C4 đến B4.
-Tạo và Xuất File Âm Thanh
-Hàm create_individual_files(duration=1, sampling_rate=44100):
-Tạo và xuất file âm thanh cho từng nhạc cụ.
+- Hàm lowpass_filter(data, cutoff, fs, order=5): Tạo bộ lọc thông thấp để làm mượt âm thanh.
+- Hàm karplus_strong(freq, duration, sampling_rate, decay_factor=0.995):
+- Tạo âm thanh guitar dựa trên thuật toán Karplus-Strong.
+- Sử dụng ngẫu nhiên để tạo âm thanh ban đầu và áp dụng bộ lọc thông thấp.
+- Hàm generate_drum_sound(note_freq, duration, sampling_rate):
+- Tạo âm thanh trống bằng cách kết hợp sóng sin và noise.
+- Hàm generate_piano_sound(freq, duration, sampling_rate):
+- Tạo âm thanh piano bằng cách sử dụng sóng sin.
+- Hàm adsr_envelope(wave, instrument, sampling_rate):
+- Tạo bao ADSR (Attack, Decay, Sustain, Release) cho các nhạc cụ.
+- Dữ Liệu Tần Số
+  Frequencies: Định nghĩa tần số cho các nốt nhạc từ C4 đến B4.
+- Tạo và Xuất File Âm Thanh
+- Hàm create_individual_files(duration=1, sampling_rate=44100):
+- Tạo và xuất file âm thanh cho từng nhạc cụ.
 Phát Âm Thanh
-Hàm playAudio(tenNot, loaiNhacCu):
-Phát âm thanh từ file tương ứng với nốt nhạc và nhạc cụ đã chọn.
+- Hàm playAudio(tenNot, loaiNhacCu):
+- Phát âm thanh từ file tương ứng với nốt nhạc và nhạc cụ đã chọn.
 
 ### Đóng Góp
 Mọi ý kiến đóng góp hoặc bản cập nhật đều được hoan nghênh. Hãy gửi mail: vuduc25022003@gmail.com để đóng góp cho dự án.
