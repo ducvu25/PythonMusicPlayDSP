@@ -31,13 +31,16 @@ Dự án này là một trò chơi tương tác dựa trên âm nhạc, được
 ### Cài Đặt Thư Viện
 pip install pygame numpy scipy pydub simpleaudio
 
-Chạy Trò Chơi
-Thay đổi đường dẫn project để chạy:
-path = "E:/Hoc_tap/UET/Nam4/Ki1/DSP/BTL/"
-Chạy file chính:
-python main.py
+### Chạy Trò Chơi
 
-Cách Chơi
+1. **Cấu hình đường dẫn**:  
+   Trong mã nguồn, đảm bảo thay đổi biến `path` trong file chính sang đường dẫn của dự án trên máy:  
+   path = "E:/Hoc_tap/UET/Nam4/Ki1/DSP/BTL/"
+
+1. **Chạy file chính**:  
+  python main.py
+
+### Cách Chơi
 Bắt đầu
 Khởi động trò chơi, chọn "Start" từ menu chính.
 Cài đặt nhạc cụ
@@ -47,7 +50,9 @@ Sử dụng các phím mũi tên Trái và Phải để tương tác với các 
 Nhấn đúng phím để ghi điểm.
 Kết thúc
 Kết quả sẽ được hiển thị ở cuối trò chơi. Hãy xem bạn đã ghi được bao nhiêu điểm!
-Thư Mục Chính
+
+
+### Thư Mục Chính
 Audio/: Chứa các file âm thanh của các nốt nhạc đã được tạo tự động.
 Image/: Lưu trữ các tài nguyên hình ảnh như nút bấm, biểu tượng, hình nền.
 Data/: Các file văn bản chứa thông tin về chuỗi nốt nhạc.
@@ -58,7 +63,9 @@ NumPy: Hỗ trợ tính toán số học và xử lý dữ liệu.
 SciPy: Cung cấp các thuật toán và kỹ thuật xử lý tín hiệu.
 Pydub: Quản lý file âm thanh dễ dàng.
 Simpleaudio: Phát âm thanh đơn giản từ file WAV.
-Các Hàm Chính
+
+
+### Các Hàm Chính
 Hàm lowpass_filter(data, cutoff, fs, order=5): Tạo bộ lọc thông thấp để làm mượt âm thanh.
 Hàm karplus_strong(freq, duration, sampling_rate, decay_factor=0.995):
 Tạo âm thanh guitar dựa trên thuật toán Karplus-Strong.
@@ -78,5 +85,5 @@ Phát Âm Thanh
 Hàm playAudio(tenNot, loaiNhacCu):
 Phát âm thanh từ file tương ứng với nốt nhạc và nhạc cụ đã chọn.
 
-Đóng Góp
+### Đóng Góp
 Mọi ý kiến đóng góp hoặc bản cập nhật đều được hoan nghênh. Hãy gửi mail: vuduc25022003@gmail.com để đóng góp cho dự án.
