@@ -3,13 +3,14 @@ import random
 import math
 from pydub import AudioSegment
 from pydub.playback import play
-
+import wave
 import numpy as np
+import simpleaudio as sa
 from scipy.io.wavfile import write
 from scipy.signal import butter, lfilter
 
 
-path = "E:/Hoc_tap/UET/Nam4/Ki1/DSP/BTL/"
+path = "C:/Learn/PythonMusicPlayDSP/BTL/"
 
 # Hàm tạo bộ lọc thông thấp
 def lowpass_filter(data, cutoff, fs, order=5):
@@ -84,30 +85,44 @@ frequencies = {
     "A4": 440.00,
     "B4": 493.88,
 }
-
+instruments = ["piano", "drum", "guitar"]
+    
 # Tạo và xuất từng file âm thanh cho mỗi nhạc cụ
 def create_individual_files(duration=1, sampling_rate=44100):
-    instruments = ["piano", "guitar", "drum"]
     for instrument in instruments:
         instrument_wave = []
         for note, freq in frequencies.items():
             print(f"Generating {note} for {instrument}")
 
             if instrument == "guitar":
-                wave = karplus_strong(freq, duration, sampling_rate)
+                wave2 = karplus_strong(freq, duration, sampling_rate)
             elif instrument == "piano":
-                wave = generate_piano_sound(freq, duration, sampling_rate)
+                wave2 = generate_piano_sound(freq, duration, sampling_rate)
             elif instrument == "drum":
-                wave = generate_drum_sound(freq, duration, sampling_rate)
+                wave2 = generate_drum_sound(freq, duration, sampling_rate)
 
-            wave = adsr_envelope(wave, instrument, sampling_rate)
-            wave = np.int16(wave / np.max(np.abs(wave)) * 32767) # Áp dụng ADSR
+            wave2 = adsr_envelope(wave2, instrument, sampling_rate)
+            wave2 = np.int16(wave2 / np.max(np.abs(wave2)) * 32767) # Áp dụng ADSR
 
 
             filename = f"{path}Audio/{instrument}_{note}.wav"
-            write(filename, sampling_rate, wave)
+            write(filename, sampling_rate, wave2)
 
-import simpleaudio as sa
+def export_audio(notes, instrument, output_file="output_notes.wav", sampling_rate=44100):
+    combined_wave = np.array([], dtype=np.float32)
+    print(notes)
+    # Tạo sóng âm cho từng nốt và nối vào mảng tổng hợp
+    combined_audio = AudioSegment.empty()  # Tạo một AudioSegment rỗng
+    
+    for note in notes:
+        file = f"{path}Audio/{instrument}_{note}.wav"
+        print(file)
+        audio = AudioSegment.from_wav(file)  # Đọc file WAV
+        combined_audio += audio  # Ghép file hiện tại vào đoạn âm thanh tổng hợp
+
+    combined_audio.export(output_file, format="wav")  # Xuất file âm thanh
+    print(f"File âm thanh '{output_file}' đã được ghép thành công!")
+
 
 def extract_notes_from_file(filename):
     notes_array = []
@@ -125,7 +140,6 @@ def extract_notes_from_file(filename):
     return notes_array
 
 def playAudio(tenNot, loaiNhacCu):
-    instruments = ["piano", "drum", "guitar"]
     instrument = instruments[loaiNhacCu]  # Lấy tên nhạc cụ
     filename = f"{path}Audio/{instrument}_{tenNot}.wav"  # Tạo tên file âm thanh
 
@@ -218,7 +232,7 @@ class IconValue:
         
 class Game:
     def __init__(self):
-        self.typeMusicalInstrument = 0 
+        self.typeMusicalInstrument = 2
 
     def loadScene(self, indexScene):
         bg_surface = pygame.image.load(path + "Image/BG.png").convert()
@@ -342,6 +356,8 @@ class Game:
         items = []
         inputValue = extract_notes_from_file(path + "/Data/" + str(random.randint(1, 5)) +".txt")
         n = len(inputValue)
+        export_audio(inputValue, instruments[self.typeMusicalInstrument], path + "output_piano.wav")
+        # xuat file am thanh toan bo ra export_audio(note):
         self.countTrue = 0
         self.countFalse = 0
         delaySpawnMin, delaySpawnMax = 1, 7
@@ -404,7 +420,7 @@ class Game:
                             elif result == -1:
                                 self.countFalse += 1
                                 print("Sai")
-                                audio_sai.play()
+                                #audio_sai.play()
                                 items[i].isActive = False
 
                 if not items[i].isActive:
